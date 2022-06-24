@@ -46,8 +46,9 @@ st.markdown(
 
  # add a input field that allows you to select ["Total Load","PV production","Wind production"] and stores it in a variable called  "option"
 
-## YOUR CODE HERE ##
-
+option = st.radio(
+     "Select the data you wish you forecast",
+     ("Total Load","PV production","Wind production"))
 
 """
 ### Training Data and Forecast Horizon
@@ -65,7 +66,7 @@ no_days = col1.slider("Historical data in days.", min_value=1, max_value=14 )
 
 # add another slide that select the "Forecast Horizon in days" and stores it in a variable called "button_periods_to_predict"
 
-## YOUR CODE HERE ##
+button_periods_to_predict = col2.slider('Forecast horizon in days.', min_value=1, max_value=7)
 
 
 no_of_hours_to_predict = button_periods_to_predict *24
@@ -83,10 +84,10 @@ df = pd.DataFrame()
 end_date_hist = datetime.now()
 start_date_hist = end_date_hist - timedelta(days = no_days)
 
-# datasets to catch external data from rebase
+# datasets to catch external data from Elia Open Data
 dataset_solar = "ods032"
 dataset_load = "ods003"
-dataset_wind =  "ods031"
+dataset_wind = "ods031"
 
 # Additonal pop-up section if multivariate forecast is selected, 
 # to choose additonal regressors 
@@ -192,16 +193,16 @@ if forecast_ready:
     """
 
     # Plot the variable "fig_forecast"
-    ## YOUR CODE HERE ##
+    st.write(fig_forecast)
 
-    # make a selection of the most import columns fo the "forecast" dataframe and display them in a table (and rename column "ds" to "datetime")
-    ## YOUR CODE HERE ##
+    # make a selection of the most import columns of the "forecast" dataframe and display them in a table (and rename column "ds" to "datetime")
+    st.write(forecast)
 
     # add a heading "Components Plot"
-    ## YOUR CODE HERE ##
+    st.write("### Components Plot")
 
     # plot the variable fig_components plot
-    ## YOUR CODE HERE ##
+    st.write(fig_comp)
     
     if reg_coef is not None:
 

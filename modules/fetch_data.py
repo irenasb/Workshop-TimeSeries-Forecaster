@@ -38,7 +38,6 @@ def get_open_data_elia_df(dataset, start_date, end_date):
 
 # get weather forecast from Rebase
 def get_weather_forecast(start_date, end_date, latitude, longitude):
-    secret = "W-cRKEYdwzL6mdWCYO2_UZSOWI1MxET07dquSY9Fck4"
     """Gets and returns the weather forecast from rebase within a given time range
 
     Parameters
@@ -64,7 +63,7 @@ def get_weather_forecast(start_date, end_date, latitude, longitude):
 
     # Authentication
     url = "https://api.rebase.energy/weather/v2/query"
-    headers = {"Authorization": secret}
+    headers = {"Authorization": st.secrets["REBASE_KEY"]}
     params = {
         'model': 'FMI_HIRLAM',
         'start-date': start_date,
